@@ -1,7 +1,3 @@
-# Phaser 3 Webpack Project Template
+# To run the test case:
 
-A Phaser 3 Project Template
-
-## How to run:
-
-`npm run build`
+`npm start`

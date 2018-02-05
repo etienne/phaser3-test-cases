@@ -1,34 +1,46 @@
 import 'phaser';
 
-var config = {
-    type: Phaser.AUTO,
-    parent: 'phaser-example',
-    width: 800,
-    height: 600,
+var configWebGl = {
+    type: Phaser.WEBGL,
+    parent: 'webgl',
+    width: 100,
+    height: 100,
     scene: {
         preload: preload,
         create: create
     }
 };
 
-var game = new Phaser.Game(config);
+var configCanvas = {
+    type: Phaser.CANVAS,
+    parent: 'canvas',
+    width: 100,
+    height: 100,
+    scene: {
+        preload: preload,
+        create: create
+    }
+};
+
+var gameWebGl = new Phaser.Game(configWebGl);
+var gameCanvas = new Phaser.Game(configCanvas);
 
 function preload ()
 {
-    this.load.image('logo', 'assets/logo.png');
+    this.load.image('tiles', 'assets/tileset.png');
 }
 
 function create ()
 {
-    var logo = this.add.image(400, 150, 'logo');
+    var level = [
+      [ null, null, null, null ],
+      [ null, null, null, null ],
+      [ null, null, null, null ],
+      [ null, null, 0,    null ],
+      [ null, null, null, null ],
+    ]
 
-    this.tweens.add({
-        targets: logo,
-        y: 450,
-        duration: 2000,
-        ease: 'Power2',
-        yoyo: true,
-        loop: -1
-    });
-
+    var map = this.make.tilemap({ data: level, tileWidth: 16, tileHeight: 16 });
+    var tiles = map.addTilesetImage('tiles', null, 40, 40);
+    var layer = map.createStaticLayer(0, tiles, 0, 0);
 }
