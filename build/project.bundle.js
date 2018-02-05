@@ -63636,8 +63636,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var configWebGl = {
     type: Phaser.WEBGL,
     parent: 'webgl',
-    width: 100,
-    height: 100,
+    width: 200,
+    height: 90,
     scene: {
         preload: preload,
         create: create
@@ -63647,8 +63647,8 @@ var configWebGl = {
 var configCanvas = {
     type: Phaser.CANVAS,
     parent: 'canvas',
-    width: 100,
-    height: 100,
+    width: 200,
+    height: 90,
     scene: {
         preload: preload,
         create: create
@@ -63676,6 +63676,8 @@ function create ()
     var map = this.make.tilemap({ data: level, tileWidth: 16, tileHeight: 16 });
     var tiles = map.addTilesetImage('tiles', null, 40, 40);
     var layer = map.createStaticLayer(0, tiles, 0, 0);
+    
+    var image = this.add.image(150, 44, 'tiles');
 }
 
 
